@@ -1,4 +1,4 @@
-ajaxboard
+아약스보드
 =========
 
-Get reactions of the other members in real-time. Support real-time of chat type updates and notifications.
+다른 회원들의 반응을 실시간으로 확인해보세요. 채팅형 실시간 갱신 및 알림을 지원합니다.
