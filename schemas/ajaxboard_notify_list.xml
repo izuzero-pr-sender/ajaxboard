@@ -1,0 +1,7 @@
+<table name="ajaxboard_notify_list">
+	<column name="notify_srl" type="number" size="11" notnull="notnull" primary_key="primary_key" />
+	<column name="target_srl" type="number" size="11" notnull="notnull" index="idx_target_srl" />
+	<column name="type" type="varchar" size="80" notnull="notnull" />
+	<column name="notified" type="char" size="1" default="N" />
+	<column name="regdate" type="date" index="idx_regdate" />
+</table>

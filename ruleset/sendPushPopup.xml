@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset version="1.5.0">
+	<customrules>
+		<rule name="use" type="enum" test="Y,N" />
+	</customrules>
+	<fields>
+		<field name="content" required="true" />
+		<field name="notice" filter="use" />
+		<field name="receiver_srl" size="11" filter="number" />
+	</fields>
+</ruleset>

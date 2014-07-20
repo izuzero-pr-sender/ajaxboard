@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+	<title xml:lang="ko">아약스보드</title>
+	<title xml:lang="en">AJAXBoard</title>
+	<title xml:lang="jp">アヤックスボード</title>
+	<description xml:lang="ko">다른 회원들의 반응을 실시간으로 확인해보세요. 채팅형 실시간 갱신 및 알림을 지원합니다.</description>
+	<description xml:lang="en">Get reactions of the other members in real-time. Support real-time of chat type updates and notifications.</description>
+	<description xml:lang="jp">他のメンバーの反応をリアルタイムで確認してください。チャット型のリアルタイムアップデート、およびお知らせをサポートします。</description>
+	<version>1.7.0</version>
+	<date>2014-04-18</date>
+	<category>utility</category>
+	<author email_address="contact@ajaxboard.co.kr" link="http://www.ajaxboard.co.kr/">
+		<name xml:lang="ko">이즈야</name>
+		<name xml:lang="en">ISIZU</name>
+		<name xml:lang="jp">イズヤ</name>
+	</author>
+</module>

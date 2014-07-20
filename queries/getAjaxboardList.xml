@@ -1,0 +1,22 @@
+<query id="getAjaxboardList" action="select">
+	<tables>
+		<table name="modules" />
+	</tables>
+	<columns>
+		<column name="*" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="module" default="ajaxboard" />
+		<group pipe="and">
+			<condition operation="like" column="mid" var="mid" />
+			<condition operation="like" column="browser_title" var="browser_title" pipe="or" />
+		</group>
+		<condition operation="equal" column="module_category_srl" var="module_category_srl" pipe="and" />
+	</conditions>
+	<navigation>
+		<index var="sort_index" default="module_srl" order="asc" />
+		<list_count var="list_count" default="20" />
+		<page_count var="page_count" default="10" />
+		<page var="page" default="1" />
+	</navigation>
+</query>

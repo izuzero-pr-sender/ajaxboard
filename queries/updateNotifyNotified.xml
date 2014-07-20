@@ -1,0 +1,14 @@
+<query id="updateNotifyNotified" action="update">
+	<tables>
+		<table name="ajaxboard_notify_list" />
+	</tables>
+	<columns>
+		<column name="notified" default="Y" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="notify_srl" var="notify_srl" filter="number" />
+		<condition operation="in" column="notify_srl" var="notify_srls" pipe="or" />
+		<condition operation="equal" column="target_srl" var="target_srl" filter="number" pipe="or" />
+		<condition operation="in" column="target_srl" var="target_srls" pipe="or" />
+	</conditions>
+</query>

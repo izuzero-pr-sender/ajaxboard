@@ -1,0 +1,24 @@
+<div class="x_page-header">
+	<h1>
+		{$lang->ajaxboard}
+		<span cond="$module_info->mid" class="path">
+			&gt; <a href="{getSiteUrl($module_info->domain, '', 'mid', $module_info->mid)}" target="_blank"|cond="$module == 'admin'">{$module_info->mid}<block cond="$module_info->is_default == 'Y'">({$lang->is_default})</block></a>
+		</span>
+		<a href="#descModule" class="x_icon-question-sign" data-toggle="#descModule">{$lang->help}</a>
+	</h1>
+</div>
+
+<p id="descModule" class="x_alert x_alert-info" hidden="hidden">{$lang->help_ajaxboard}</p>
+
+<ul cond="in_array($act, array('dispAjaxboardAdminContent', 'dispAjaxboardAdminConfig', 'dispAjaxboardAdminServerInfo', 'dispAjaxboardAdminSendPush', 'dispAjaxboardAdminAjaxboardInfo', 'dispAjaxboardAdminGrantInfo', 'dispAjaxboardAdminSkinInfo', 'dispAjaxboardAdminMobileSkinInfo'))" class="x_nav x_nav-tabs">
+	<li class="x_active"|cond="$act == 'dispAjaxboardAdminContent'"><a href="{getUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminContent')}">{$lang->cmd_ajaxboard_list}</a></li>
+	<li class="x_active"|cond="$act == 'dispAjaxboardAdminConfig'"><a href="{getUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminConfig')}">{$lang->cmd_general_setup}</a></li>
+	<li class="x_active"|cond="$act == 'dispAjaxboardAdminServerInfo'"><a href="{getUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminServerInfo')}">{$lang->cmd_server_infomation}</a></li>
+	<li class="x_active"|cond="$act == 'dispAjaxboardAdminSendPush'"><a href="{getUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminSendPush')}">{$lang->cmd_push_notifications}</a></li>
+	<block cond="$module_srl">
+		<li class="x_active"|cond="$act == 'dispAjaxboardAdminAjaxboardInfo'"><a href="{getUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminAjaxboardInfo', 'module_srl', $module_srl)}">{$lang->cmd_ajaxboard_info}</a></li>
+		<li class="x_active"|cond="$act == 'dispAjaxboardAdminGrantInfo'"><a href="{getUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminGrantInfo', 'module_srl', $module_srl)}">{$lang->cmd_manage_grant}</a></li>
+		<li class="x_active"|cond="$act == 'dispAjaxboardAdminSkinInfo'"><a href="{getUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminSkinInfo', 'module_srl', $module_srl)}">{$lang->cmd_manage_skin}</a></li>
+		<li class="x_active"|cond="$act == 'dispAjaxboardAdminMobileSkinInfo'"><a href="{getUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminMobileSkinInfo', 'module_srl', $module_srl)}">{$lang->cmd_manage_mobile_skin}</a></li>
+	</block>
+</ul>

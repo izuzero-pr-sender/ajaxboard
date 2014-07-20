@@ -1,0 +1,12 @@
+<query id="insertNotify" action="insert">
+	<tables>
+		<table name="ajaxboard_notify_list" />
+	</tables>
+	<columns>
+		<column name="notify_srl" var="notify_srl" filter="number" notnull="notnull" />
+		<column name="target_srl" var="target_srl" filter="number" notnull="notnull" />
+		<column name="type" var="type" notnull="notnull" />
+		<column name="notified" var="notified" default="N" />
+		<column name="regdate" var="regdate" filter="number" default="curdate()" />
+	</columns>
+</query>

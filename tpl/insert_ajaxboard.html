@@ -1,0 +1,204 @@
+<include target="./header.html" />
+
+<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/ajaxboard/tpl/insert_ajaxboard/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<form ruleset="insertAjaxboard" class="x_form-horizontal" action="{Context::getRequestUri()}" method="post">
+	<input type="hidden" name="module" value="ajaxboard" />
+	<input type="hidden" name="module_srl" value="{$module_info->module_srl}" />
+	<input cond="$logged_info->is_admin != 'Y'" type="hidden" name="mid" value="{$module_info->mid}" />
+	<input type="hidden" name="act" value="procAjaxboardAdminInsertAjaxboard" />
+	<input type="hidden" name="page" value="{$page}" />
+	<input type="hidden" name="xe_validator_id" value="modules/ajaxboard/tpl/insert_ajaxboard/1" />
+	
+	<section class="section">
+		<h1>{$lang->subtitle_primary}</h1>
+		
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="mid">{$lang->mid}</label>
+			<div class="x_controls">
+				<input type="text" name="mid" id="mid" value="{$module_info->mid}" />
+				<a href="#about_mid" class="x_icon-question-sign" data-toggle="#about_mid">{$lang->help}</a>
+				<p id="about_mid" class="x_help-block" hidden="hidden">{$lang->about_mid}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="browser_title">{$lang->browser_title}</label>
+			<div class="x_controls">
+				<input type="text" name="browser_title" id="browser_title" value="<!--@if(strpos($module_info->browser_title, '$user_lang->') === false)-->{$module_info->browser_title}<!--@else-->{htmlspecialchars($module_info->browser_title)}<!--@end-->" class="lang_code" />
+				<a href="#about_browser_title" class="x_icon-question-sign" data-toggle="#about_browser_title">{$lang->help}</a>
+				<p id="about_browser_title" class="x_help-block" hidden="hidden">{$lang->about_browser_title}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="layout_srl">{$lang->layout}</label>
+			<div class="x_controls">
+				<select name="layout_srl" id="layout_srl">
+					<option value="0">{$lang->notuse}</option>
+					<option loop="$layout_list=>$key,$val" value="{$val->layout_srl}" selected="selected"|cond="$module_info->layout_srl == $val->layout_srl">{$val->title} ({$val->layout})</option>
+				</select>
+				<a href="#about_layout" class="x_icon-question-sign" data-toggle="#about_layout">{$lang->help}</a>
+				<p id="about_layout" class="x_help-block" hidden="hidden">{$lang->about_layout}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="skin" class="x_control-label">{$lang->skin}</label>
+			<div class="x_controls">
+				<select name="skin" id="skin">
+					<option loop="$skin_list=>$key,$val" value="{$key}" selected="selected"|cond="$module_info->skin == $key">{$val->title}</option>
+				</select>
+				<a href="#about_skin" class="x_icon-question-sign" data-toggle="#about_skin">{$lang->help}</a>
+				<p id="about_skin" class="x_help-block" hidden="hidden">{$lang->about_skin}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="lang_header_text">{$lang->header_text}</label>
+			<div class="x_controls">
+				<textarea name="header_text" id="header_text" class="lang_code" rows="8" cols="42" placeholder="{$lang->about_header_text}"><!--@if(strpos($module_info->header_text, '$user_lang->') === false)-->{$module_info->header_text}<!--@else-->{htmlspecialchars($module_info->header_text)}<!--@end--></textarea>
+				<a href="#about_header_text" class="x_icon-question-sign" data-toggle="#about_header_text">{$lang->help}</a>
+				<p id="about_header_text" class="x_help-block" hidden="hidden">{$lang->about_header_text}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="lang_footer_text">{$lang->footer_text}</label>
+			<div class="x_controls">
+				<textarea name="footer_text" id="footer_text" class="lang_code" rows="8" cols="42" placeholder="{$lang->about_footer_text}"><!--@if(strpos($module_info->footer_text, '$user_lang->') === false)-->{$module_info->footer_text}<!--@else-->{htmlspecialchars($module_info->footer_text)}<!--@end--></textarea>
+				<a href="#about_footer_text" class="x_icon-question-sign" data-toggle="#about_footer_text">{$lang->help}</a>
+				<p id="about_footer_text" class="x_help-block" hidden="hidden">{$lang->about_footer_text}</p>
+			</div>
+		</div>
+	</section>
+	
+	<section class="section">
+		<h1>{$lang->mobile_settings}</h1>
+		
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->mobile_view}</label>
+			<div class="x_controls">
+				<label class="x_inline" for="use_mobile"><input type="checkbox" name="use_mobile" id="use_mobile" value="Y" checked="checked"|cond="$module_info->use_mobile == 'Y'" /> {$lang->about_mobile_view}</label>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="mlayout_srl">{$lang->mobile_layout}</label>
+			<div class="x_controls">
+				<select name="mlayout_srl" id="mlayout_srl">
+					<option value="0">{$lang->notuse}</option>
+					<option loop="$mlayout_list=>$key,$val" value="{$val->layout_srl}" selected="selected"|cond="$module_info->mlayout_srl == $val->layout_srl">{$val->title} ({$val->layout})</option>
+				</select>
+				<a href="#about_layout" class="x_icon-question-sign" data-toggle="#about_layout">{$lang->help}</a>
+				<p id="about_layout" class="x_help-block" hidden="hidden">{$lang->about_layout}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="mskin" class="x_control-label">{$lang->mobile_skin}</label>
+			<div class="x_controls">
+				<select name="mskin" id="mskin">
+					<option loop="$mskin_list=>$key,$val" value="{$key}" selected="selected"|cond="$module_info->mskin == $key">{$val->title}</option>
+				</select>
+				<a href="#about_mobile_skin" class="x_icon-question-sign" data-toggle="#about_mobile_skin">{$lang->help}</a>
+				<p id="about_mobile_skin" class="x_help-block" hidden="hidden">{$lang->about_skin}</p>
+			</div>
+		</div>
+	</section>
+	
+	<section class="section">
+		<h1>{$lang->subtitle_advanced}</h1>
+		
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->cmd_use_module_pc}</label>
+			<div class="x_controls">
+				<label class="x_inline" for="use_module_pc"><input type="checkbox" name="use_module_pc" id="use_module_pc" value="Y" checked="checked"|cond="$module_info->use_module_pc == 'Y'" /> {$lang->help_use_module_pc}</label>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->cmd_use_module_mobile}</label>
+			<div class="x_controls">
+				<label class="x_inline" for="use_module_mobile"><input type="checkbox" name="use_module_mobile" id="use_module_mobile" value="Y" checked="checked"|cond="$module_info->use_module_mobile == 'Y'" /> {$lang->help_use_module_mobile}</label>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->cmd_wfsr}</label>
+			<div class="x_controls">
+				<label class="x_inline" for="use_wfsr"><input type="checkbox" name="use_wfsr" id="use_wfsr" value="Y" checked="checked"|cond="$module_info->use_wfsr == 'Y'" /> {$lang->help_wfsr}</label>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->target}</label>
+			<div class="x_controls">
+				<label class="x_inline">{$lang->cmd_use_selected_target}</label>
+				<table class="x_table x_table-striped x_table-hover">
+					<thead>
+						<tr>
+							<th scope="col">{$lang->module}</th>
+							<th scope="col">{$lang->mid}</th>
+							<th scope="col">{$lang->browser_title}</th>
+							<th scope="col"><input type="checkbox" data-name="module_srl_list[]" title="Check All" /></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr loop="$module_srl_list=>$key,$val">
+							<td>{$val->module}</td>
+							<td>{$val->mid}</td>
+							<td><a href="{getUrl('', 'mid', $val->mid)}" target="_blank">{$val->browser_title}</a></td>
+							<td><input type="checkbox" name="module_srl_list[]" value="{$key}" checked="checked"|cond="in_array($key, $module_info->module_srl_list)" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->cmd_push_notifications}</label>
+			<div class="x_controls">
+				<label class="x_inline">{$lang->cmd_use_selected_notify}</label>
+				<table class="x_table x_table-striped x_table-hover">
+					<thead>
+						<tr>
+							<th scope="col">{$lang->module}</th>
+							<th scope="col">{$lang->mid}</th>
+							<th scope="col">{$lang->browser_title}</th>
+							<th scope="col"><input type="checkbox" data-name="notify_list[]" title="Check All" /></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr loop="$notify_list=>$key,$val">
+							<td>{$val->module}</td>
+							<td>{$val->mid}</td>
+							<td><a href="{getUrl('', 'mid', $val->mid)}" target="_blank">{$val->browser_title}</a></td>
+							<td><input type="checkbox" name="notify_list[]" value="{$key}" checked="checked"|cond="in_array($key, $module_info->notify_list)" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="module_category_srl">{$lang->module_category}</label>
+			<div class="x_controls">
+				<select name="module_category_srl" id="module_category_srl">
+					<option value="0">{$lang->notuse}</option>
+					<option loop="$module_category=>$key,$val" value="{$key}" selected="selected"|cond="$module_info->module_category_srl == $key">{$val->title}</option>
+				</select>
+				<a href="#about_module_category" class="x_icon-question-sign" data-toggle="#about_module_category">{$lang->help}</a>
+				<p id="about_module_category" class="x_help-block" hidden="hidden">{$lang->about_module_category}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="description">{$lang->description}</label>
+			<div class="x_controls">
+				<textarea name="description" id="description" rows="4" cols="42" placeholder="{$lang->about_description}" style="vertical-align:top">{htmlspecialchars($module_info->description)}</textarea>
+				<a href="#about_description" class="x_icon-question-sign" data-toggle="#about_description">{$lang->help}</a>
+				<p id="about_description" class="x_help-block" hidden="hidden">{$lang->about_description}</p>
+			</div>
+		</div>
+	</section>
+	
+	<div class="btnArea x_clearfix">
+		<div class="x_pull-left">
+			<a href="{getUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminContent')}" type="button" class="x_btn">{$lang->cmd_cancel}</a>
+		</div>
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_registration}</button>
+		</div>
+	</div>
+</form>
+<style>.g11n{vertical-align:top!important}</style>

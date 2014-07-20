@@ -1,0 +1,133 @@
+/**
+ * AJAXBoard XE Module Javascript
+ * Copyright (C) 아약스보드. All rights reserved.
+ **/
+
+@charset "UTF-8";
+
+table#ajaxboard {border-collapse:collapse;border-spacing:0;background-color:transparent}
+th {text-align:left}
+.table {width:100%;max-width:100%;margin-bottom:20px}
+.table#ajaxboard > thead > tr > th,
+.table#ajaxboard > tbody > tr > th,
+.table#ajaxboard > tfoot > tr > th,
+.table#ajaxboard > thead > tr > td,
+.table#ajaxboard > tbody > tr > td,
+.table#ajaxboard > tfoot > tr > td {padding:8px;line-height:1.42857143;vertical-align:top;border-top:1px solid #dddddd}
+.table#ajaxboard > thead > tr > th {vertical-align:bottom;border-bottom:2px solid #dddddd}
+.table#ajaxboard > caption + thead > tr:first-child > th,
+.table#ajaxboard > colgroup + thead > tr:first-child > th,
+.table#ajaxboard > thead:first-child > tr:first-child > th,
+.table#ajaxboard > caption + thead > tr:first-child > td,
+.table#ajaxboard > colgroup + thead > tr:first-child > td,
+.table#ajaxboard > thead:first-child > tr:first-child > td {border-top:0}
+.table#ajaxboard > tbody + tbody {border-top:2px solid #dddddd}
+.table#ajaxboard .table {background-color:#ffffff}
+.table-condensed#ajaxboard > thead > tr > th,
+.table-condensed#ajaxboard > tbody > tr > th,
+.table-condensed#ajaxboard > tfoot > tr > th,
+.table-condensed#ajaxboard > thead > tr > td,
+.table-condensed#ajaxboard > tbody > tr > td,
+.table-condensed#ajaxboard > tfoot > tr > td {padding:5px}
+.table-bordered#ajaxboard {border:1px solid #dddddd}
+.table-bordered#ajaxboard > thead > tr > th,
+.table-bordered#ajaxboard > tbody > tr > th,
+.table-bordered#ajaxboard > tfoot > tr > th,
+.table-bordered#ajaxboard > thead > tr > td,
+.table-bordered#ajaxboard > tbody > tr > td,
+.table-bordered#ajaxboard > tfoot > tr > td {border:1px solid #dddddd}
+.table-bordered#ajaxboard > thead > tr > th,
+.table-bordered#ajaxboard > thead > tr > td {border-bottom-width:2px}
+.table-striped#ajaxboard > tbody > tr:nth-child(odd) > td,
+.table-striped#ajaxboard > tbody > tr:nth-child(odd) > th {background-color:#f9f9f9}
+.table-hover#ajaxboard > tbody > tr:hover > td,
+.table-hover#ajaxboard > tbody > tr:hover > th {background-color:#f5f5f5}
+table#ajaxboard col[class*="col-"] {position:static;float:none;display:table-column}
+table#ajaxboard td[class*="col-"],
+table#ajaxboard th[class*="col-"] {position:static;float:none;display:table-cell}
+.table#ajaxboard > thead > tr > td.active,
+.table#ajaxboard > tbody > tr > td.active,
+.table#ajaxboard > tfoot > tr > td.active,
+.table#ajaxboard > thead > tr > th.active,
+.table#ajaxboard > tbody > tr > th.active,
+.table#ajaxboard > tfoot > tr > th.active,
+.table#ajaxboard > thead > tr.active > td,
+.table#ajaxboard > tbody > tr.active > td,
+.table#ajaxboard > tfoot > tr.active > td,
+.table#ajaxboard > thead > tr.active > th,
+.table#ajaxboard > tbody > tr.active > th,
+.table#ajaxboard > tfoot > tr.active > th {background-color:#f5f5f5}
+.table-hover#ajaxboard > tbody > tr > td.active:hover,
+.table-hover#ajaxboard > tbody > tr > th.active:hover,
+.table-hover#ajaxboard > tbody > tr.active:hover > td,
+.table-hover#ajaxboard > tbody > tr:hover > .active,
+.table-hover#ajaxboard > tbody > tr.active:hover > th {background-color:#e8e8e8}
+.table#ajaxboard > thead > tr > td.success,
+.table#ajaxboard > tbody > tr > td.success,
+.table#ajaxboard > tfoot > tr > td.success,
+.table#ajaxboard > thead > tr > th.success,
+.table#ajaxboard > tbody > tr > th.success,
+.table#ajaxboard > tfoot > tr > th.success,
+.table#ajaxboard > thead > tr.success > td,
+.table#ajaxboard > tbody > tr.success > td,
+.table#ajaxboard > tfoot > tr.success > td,
+.table#ajaxboard > thead > tr.success > th,
+.table#ajaxboard > tbody > tr.success > th,
+.table#ajaxboard > tfoot > tr.success > th {background-color:#dff0d8}
+.table-hover#ajaxboard > tbody > tr > td.success:hover,
+.table-hover#ajaxboard > tbody > tr > th.success:hover,
+.table-hover#ajaxboard > tbody > tr.success:hover > td,
+.table-hover#ajaxboard > tbody > tr:hover > .success,
+.table-hover#ajaxboard > tbody > tr.success:hover > th {background-color:#d0e9c6}
+.table#ajaxboard > thead > tr > td.info,
+.table#ajaxboard > tbody > tr > td.info,
+.table#ajaxboard > tfoot > tr > td.info,
+.table#ajaxboard > thead > tr > th.info,
+.table#ajaxboard > tbody > tr > th.info,
+.table#ajaxboard > tfoot > tr > th.info,
+.table#ajaxboard > thead > tr.info > td,
+.table#ajaxboard > tbody > tr.info > td,
+.table#ajaxboard > tfoot > tr.info > td,
+.table#ajaxboard > thead > tr.info > th,
+.table#ajaxboard > tbody > tr.info > th,
+.table#ajaxboard > tfoot > tr.info > th {background-color:#d9edf7}
+.table-hover#ajaxboard > tbody > tr > td.info:hover,
+.table-hover#ajaxboard > tbody > tr > th.info:hover,
+.table-hover#ajaxboard > tbody > tr.info:hover > td,
+.table-hover#ajaxboard > tbody > tr:hover > .info,
+.table-hover#ajaxboard > tbody > tr.info:hover > th {background-color:#c4e3f3}
+.table#ajaxboard > thead > tr > td.warning,
+.table#ajaxboard > tbody > tr > td.warning,
+.table#ajaxboard > tfoot > tr > td.warning,
+.table#ajaxboard > thead > tr > th.warning,
+.table#ajaxboard > tbody > tr > th.warning,
+.table#ajaxboard > tfoot > tr > th.warning,
+.table#ajaxboard > thead > tr.warning > td,
+.table#ajaxboard > tbody > tr.warning > td,
+.table#ajaxboard > tfoot > tr.warning > td,
+.table#ajaxboard > thead > tr.warning > th,
+.table#ajaxboard > tbody > tr.warning > th,
+.table#ajaxboard > tfoot > tr.warning > th {background-color:#fcf8e3}
+.table-hover#ajaxboard > tbody > tr > td.warning:hover,
+.table-hover#ajaxboard > tbody > tr > th.warning:hover,
+.table-hover#ajaxboard > tbody > tr.warning:hover > td,
+.table-hover#ajaxboard > tbody > tr:hover > .warning,
+.table-hover#ajaxboard > tbody > tr.warning:hover > th {background-color:#faf2cc}
+.table#ajaxboard > thead > tr > td.danger,
+.table#ajaxboard > tbody > tr > td.danger,
+.table#ajaxboard > tfoot > tr > td.danger,
+.table#ajaxboard > thead > tr > th.danger,
+.table#ajaxboard > tbody > tr > th.danger,
+.table#ajaxboard > tfoot > tr > th.danger,
+.table#ajaxboard > thead > tr.danger > td,
+.table#ajaxboard > tbody > tr.danger > td,
+.table#ajaxboard > tfoot > tr.danger > td,
+.table#ajaxboard > thead > tr.danger > th,
+.table#ajaxboard > tbody > tr.danger > th,
+.table#ajaxboard > tfoot > tr.danger > th {background-color:#f2dede}
+.table-hover#ajaxboard > tbody > tr > td.danger:hover,
+.table-hover#ajaxboard > tbody > tr > th.danger:hover,
+.table-hover#ajaxboard > tbody > tr.danger:hover > td,
+.table-hover#ajaxboard > tbody > tr:hover > .danger,
+.table-hover#ajaxboard > tbody > tr.danger:hover > th {background-color:#ebcccc}
+table#ajaxboard th[scope="row"] {width:30%}
