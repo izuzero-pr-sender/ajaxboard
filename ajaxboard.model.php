@@ -277,7 +277,7 @@ class ajaxboardModel extends ajaxboard
 			$args->document_srl = $oDocument->get('document_srl');
 			$args->member_srl   = $oDocument->getMemberSrl();
 			$args->title        = $oDocument->getTitleText();
-			$args->content      = trim(strip_tags(nl2br($oDocument->getContent())));
+			$args->content      = trim(strip_tags(nl2br($oDocument->getContent(false, false, false, false, false))));
 			$args->nickname     = $oDocument->getNickName();
 			$args->voted_count  = $oDocument->get('voted_count');
 			$args->blamed_count = $oDocument->get('blamed_count');
@@ -314,7 +314,7 @@ class ajaxboardModel extends ajaxboard
 			$args->document_srl = $oComment->get('document_srl');
 			$args->comment_srl  = $oComment->get('comment_srl');
 			$args->member_srl   = $oComment->getMemberSrl();
-			$args->content      = trim(strip_tags(nl2br($oComment->getContent())));
+			$args->content      = trim(strip_tags(nl2br($oComment->getContent(false, false, false))));
 			$args->nickname     = $oComment->getNickName();
 			$args->voted_count  = $oComment->get('voted_count');
 			$args->blamed_count = $oComment->get('blamed_count');
