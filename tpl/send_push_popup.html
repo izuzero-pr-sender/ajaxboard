@@ -1,0 +1,41 @@
+<h1 cond="$notice == 'Y'">{$lang->cmd_send_notifications_to_all}</h1>
+<h1 cond="$notice != 'Y'">{$lang->cmd_send_push_notifications}</h1>
+
+<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/ajaxboard/tpl/send_push_popup/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<form ruleset="sendPushPopup" class="x_form-horizontal" action="{Context::getRequestUri()}" method="post">
+	<input type="hidden" name="module" value="ajaxboard" />
+	<input type="hidden" name="act" value="procAjaxboardAdminSendPush" />
+	<input type="hidden" name="receiver_srl" value="{$receiver_srl}" />
+	<input type="hidden" name="notice" value="{$notice}" />
+	<input type="hidden" name="message" value="" />
+	<input type="hidden" name="is_popup" value="Y" />
+	<input type="hidden" name="xe_validator_id" value="modules/ajaxboard/tpl/send_push_popup/1" />
+	
+	<table cond="$receiver_info" class="x_table x_table-striped x_table-hover">
+		<thead>
+			<tr>
+				<th scope="col" class="nowr">{$lang->email}</th>
+				<th scope="col" class="nowr">{$lang->user_id}</th>
+				<th scope="col" class="nowr">{$lang->nick_name}</th>
+				<th scope="col" class="nowr">{$lang->member_group}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{$receiver_info->email_address}</td>
+				<td>{$receiver_info->user_id}</td>
+				<td>{$receiver_info->nick_name}</td>
+				<td>{$receiver_info->group_list}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	{$editor}
+	
+	<div class="btnArea">
+		<input type="submit" class="x_btn x_btn-inverse" value="{$lang->cmd_send_notifications_to_all}"|cond="$notice == 'Y'" value="{$lang->cmd_send_push_notifications}"|cond="$notice != 'Y'" />
+	</div>
+</form>

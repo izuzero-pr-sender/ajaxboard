@@ -1,0 +1,14 @@
+<query id="getAllNotify" action="select">
+	<tables>
+		<table name="ajaxboard_notify_list" />
+	</tables>
+	<columns>
+		<column name="*" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="notified" var="notified" default="N" />
+	</conditions>
+	<navigation>
+		<index var="sort_index" default="target_srl" order="asc" />
+	</navigation>
+</query>

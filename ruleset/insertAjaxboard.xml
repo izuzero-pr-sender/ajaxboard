@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset version="1.5.0">
+	<customrules>
+		<rule name="use" type="enum" test="Y,N" />
+	</customrules>
+	<fields>
+		<field name="mid" required="true" length="1:40" rule="alpha_number" />
+		<field name="browser_title" required="true" length="1:250" />
+		<field name="layout_srl" default="-1" />
+		<field name="mlayout_srl" default="-1" />
+		<field name="skin" default="/USE_DEFAULT/" />
+		<field name="mskin" default="/USE_DEFAULT/" />
+		<field name="module_category_srl" default="0" rule="number" />
+		<field name="use_mobile" rule="use" />
+		<field name="use_wfsr" default="Y" rule="use" />
+	</fields>
+</ruleset>

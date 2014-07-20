@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<grants>
+		<grant name="service" default="guest">
+			<title xml:lang="ko">실시간 서비스</title>
+			<title xml:lang="en">Realtime service</title>
+			<title xml:lang="jp">リアルタイムサービス</title>
+		</grant>
+	</grants>
+	<permissions>
+		<permission action="dispAjaxboardAdminContent" target="manager" />
+		<permission action="dispAjaxboardAdminConfig" target="manager" />
+		<permission action="dispAjaxboardAdminInsertAjaxboard" target="manager" />
+		<permission action="dispAjaxboardAdminDeleteAjaxboard" target="manager" />
+		<permission action="dispAjaxboardAdminServerInfo" target="manager" />
+		<permission action="dispAjaxboardAdminSendPush" target="manager" />
+		<permission action="dispAjaxboardAdminSendPushPopup" target="manager" />
+		<permission action="dispAjaxboardAdminAjaxboardInfo" target="manager" />
+		<permission action="dispAjaxboardAdminGrantInfo" target="manager" />
+		<permission action="dispAjaxboardAdminSkinInfo" target="manager" />
+		<permission action="dispAjaxboardAdminMobileSkinInfo" target="manager" />
+		<permission action="procAjaxboardAdminInsertConfig" target="manager" />
+		<permission action="procAjaxboardAdminDeleteAjaxboard" target="manager" />
+		<permission action="procAjaxboardAdminInsertAjaxboard" target="manager" />
+		<permission action="procAjaxboardAdminSendPush" target="manager" />
+		<permission action="getAjaxboardAdminVariables" target="manager" />
+		<permission action="getAjaxboardWholeVariables" target="service" />
+		<permission action="getAjaxboardDocument" target="service" />
+		<permission action="getAjaxboardComment" target="service" />
+	</permissions>
+	<actions>
+		<action name="dispAjaxboardAdminContent" type="view" menu_name="ajaxboard" menu_index="true" admin_index="true" />
+		<action name="dispAjaxboardAdminConfig" type="view" menu_name="ajaxboard" />
+		<action name="dispAjaxboardAdminInsertAjaxboard" type="view" menu_name="ajaxboard" setup_index="true" />
+		<action name="dispAjaxboardAdminDeleteAjaxboard" type="view" menu_name="ajaxboard" />
+		<action name="dispAjaxboardAdminServerInfo" type="view" menu_name="ajaxboard" />
+		<action name="dispAjaxboardAdminSendPush" type="view" menu_name="ajaxboard" />
+		<action name="dispAjaxboardAdminSendPushPopup" type="view" menu_name="ajaxboard" />
+		<action name="dispAjaxboardAdminAjaxboardInfo" type="view" menu_name="ajaxboard" />
+		<action name="dispAjaxboardAdminGrantInfo" type="view" menu_name="ajaxboard" />
+		<action name="dispAjaxboardAdminSkinInfo" type="view" menu_name="ajaxboard" />
+		<action name="dispAjaxboardAdminMobileSkinInfo" type="view" menu_name="ajaxboard" />
+		<action name="dispAjaxboardServerInfo" type="view" index="true" />
+		<action name="procAjaxboardAdminInsertConfig" type="controller" ruleset="insertConfig" />
+		<action name="procAjaxboardAdminDeleteAjaxboard" type="controller" ruleset="deleteAjaxboard" />
+		<action name="procAjaxboardAdminInsertAjaxboard" type="controller" ruleset="insertAjaxboard" />
+		<action name="procAjaxboardAdminSendPush" type="controller" ruleset="sendPush" />
+		<action name="getAjaxboardAdminVariables" type="model" />
+		<action name="getAjaxboardWholeVariables" type="model" ruleset="getWholeVariables" />
+		<action name="getAjaxboardDocument" type="model" ruleset="getDocument" />
+		<action name="getAjaxboardComment" type="model" ruleset="getComment" />
+	</actions>
+	<menus>
+		<menu name="ajaxboard" type="all">
+			<title xml:lang="ko">아약스보드</title>
+			<title xml:lang="en">AJAXBoard</title>
+			<title xml:lang="jp">アヤックスボード</title>
+		</menu>
+	</menus>
+</module>

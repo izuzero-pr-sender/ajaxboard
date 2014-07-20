@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset version="1.5.0">
+	<customrules>
+		<rule name="use" type="enum" test="Y,N" />
+	</customrules>
+	<fields>
+		<field name="use_cdn" rule="use" />
+		<field name="timeout" default="1000" length="1:40" rule="number" />
+		<field name="token" length="1:32" />
+		<field name="private_key" length="1:32" />
+	</fields>
+</ruleset>

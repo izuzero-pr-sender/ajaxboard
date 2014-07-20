@@ -1,0 +1,58 @@
+<include target="./header.html" />
+
+<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/ajaxboard/tpl/insert_config/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<form ruleset="insertConfig" class="x_form-horizontal" action="{Context::getRequestUri()}" method="post">
+	<input type="hidden" name="module" value="ajaxboard" />
+	<input type="hidden" name="act" value="procAjaxboardAdminInsertConfig" />
+	<input type="hidden" name="xe_validator_id" value="modules/ajaxboard/tpl/insert_config/1" />
+	
+	<section class="section">
+		<h1>{$lang->subtitle_primary}</h1>
+		
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->cmd_use_cdn}</label>
+			<div class="x_controls">
+				<label class="x_inline" for="use_cdn"><input type="checkbox" name="use_cdn" id="use_cdn" value="Y" checked="checked"|cond="$module_config->use_cdn == 'Y'" /> {sprintf($lang->help_use_cdn, $socket_io_version)}</label>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="timeout" class="x_control-label">{$lang->cmd_timeout}</label>
+			<div class="x_controls">
+				<input type="number" name="timeout" id="timeout" value="{$module_config->timeout}"|cond="$module_config->timeout" value="1000"|cond="!$module_config->timeout" /> ms
+				<a href="#help_timeout" class="x_icon-question-sign" data-toggle="#help_timeout">{$lang->help}</a>
+				<p id="help_timeout" class="x_help-block" hidden="hidden">{$lang->help_timeout}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="server_uri" class="x_control-label">{$lang->cmd_server_uri}</label>
+			<div class="x_controls">
+				<input type="text" name="server_uri" id="server_uri" value="{$module_config->server_uri}" />
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="token" class="x_control-label">{$lang->cmd_token}</label>
+			<div class="x_controls">
+				<input type="text" name="token" id="token" value="{$module_config->token}" />
+				<a href="#help_token" class="x_icon-question-sign" data-toggle="#help_token">{$lang->help}</a>
+				<p id="help_token" class="x_help-block" hidden="hidden">{$lang->help_token}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="private_key" class="x_control-label">{$lang->cmd_private_key}</label>
+			<div class="x_controls">
+				<input type="text" name="private_key" id="private_key" value="{$module_config->private_key}" />
+				<a href="#help_private_key" class="x_icon-question-sign" data-toggle="#help_private_key">{$lang->help}</a>
+				<p id="help_private_key" class="x_help-block" hidden="hidden">{$lang->help_private_key}</p>
+			</div>
+		</div>
+	</section>
+	
+	<div class="btnArea x_clearfix">
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_registration}</button>
+		</div>
+	</div>
+</form>

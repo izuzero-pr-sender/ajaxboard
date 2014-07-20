@@ -1,0 +1,23 @@
+<query id="getNotify" action="select">
+	<tables>
+		<table name="ajaxboard_notify_list" />
+	</tables>
+	<columns>
+		<column name="*" />
+	</columns>
+	<conditions>
+		<group pipe="and">
+			<condition operation="equal" column="notify_srl" var="notify_srl" filter="number" />
+			<condition operation="in" column="notify_srl" var="notify_srls" pipe="or" />
+		</group>
+		<group pipe="and">
+			<condition operation="equal" column="target_srl" var="target_srl" filter="number" />
+			<condition operation="in" column="target_srl" var="target_srls" pipe="or" />
+		</group>
+		<condition operation="equal" column="type" var="type" pipe="and" />
+		<condition operation="equal" column="notified" var="notified" default="N" pipe="and" />
+	</conditions>
+	<navigation>
+		<index var="sort_index" default="target_srl" order="asc" />
+	</navigation>
+</query>

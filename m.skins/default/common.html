@@ -1,0 +1,12 @@
+<load target="../../tpl/js/libs/notifications/noty/jquery.noty.js" />
+<load target="./js/common.js" />
+<load target="./js/board.js" cond="$module_info->module == 'board' && (!$act || $act == 'dispBoardContent')" />
+<script>
+jQuery(function($)
+{
+	oAJAXBoard.setWholeVariables().done(function()
+	{
+		oAJAXBoard.connect();
+	});
+});
+</script>
