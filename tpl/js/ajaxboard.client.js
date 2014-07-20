@@ -111,7 +111,7 @@
 					
 					oComment.done(function(response, status, xhr)
 					{
-						if (that.member_srl && that.member_srl == response.parent_srl)
+						if (that.member_srl && that.member_srl != response.member_srl && that.member_srl == response.parent_srl)
 						{
 							that.triggerCall("events.notifyComment", "before", [
 								response.document_srl,
