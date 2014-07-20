@@ -88,19 +88,17 @@
 		},
 		triggerInsertComment: function(document_srl, comment_srl)
 		{
-			if (!($("div#comment").length && this.document_srl == document_srl))
+			if ($("div#comment").length && this.document_srl == document_srl)
 			{
-				return false;
+				oAJAXBoardDocPlugin.dispComment();
 			}
-			oAJAXBoardDocPlugin.dispComment();
 		},
 		triggerDeleteComment: function(comment_srl)
 		{
-			if (!($("div#comment").length && $("#comment_" + comment_srl).length))
+			if ($("div#comment").length && $("#comment_" + comment_srl).length)
 			{
-				return false;
+				oAJAXBoardDocPlugin.dispComment();
 			}
-			oAJAXBoardDocPlugin.dispComment();
 		},
 		triggerDispDocumentList: function()
 		{

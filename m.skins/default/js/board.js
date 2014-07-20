@@ -90,19 +90,17 @@
 		},
 		triggerInsertComment: function(document_srl, comment_srl)
 		{
-			if (!($("div.bd").length && this.document_srl == document_srl))
+			if ($("div.bd").length && this.document_srl == document_srl)
 			{
-				return false;
+				oAJAXBoardDocPlugin.dispComment();
 			}
-			oAJAXBoardDocPlugin.dispComment();
 		},
 		triggerDeleteComment: function(comment_srl)
 		{
-			if (!($("div.bd").length && $("div[class^='comment_" + comment_srl + "']").length))
+			if ($("div.bd").length && $("div[class^='comment_" + comment_srl + "']").length)
 			{
-				return false;
+				oAJAXBoardDocPlugin.dispComment();
 			}
-			oAJAXBoardDocPlugin.dispComment();
 		},
 		triggerDispDocumentList: function()
 		{
