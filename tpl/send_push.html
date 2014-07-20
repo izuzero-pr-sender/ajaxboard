@@ -5,8 +5,8 @@
 xe.lang.msg_select_push_notifications = "{$lang->msg_select_push_notifications}";
 </script>
 
-<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/ajaxboard/tpl/send_push/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
-<p>{$XE_VALIDATOR_MESSAGE}</p>
+<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/ajaxboard/tpl/send_push/2'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
 </div>
 
 <table id="memberList" class="x_table x_table-striped x_table-hover">
@@ -55,7 +55,7 @@ xe.lang.msg_select_push_notifications = "{$lang->msg_select_push_notifications}"
 </table>
 
 <div class="x_clearfix">
-	<form cond="$page_navigation" action="{getUrl('')}" class="x_pagination x_pull-left" no-error-return-url="true" style="margin:0">
+	<form cond="$page_navigation" action="{Context::getRequestUri()}" class="x_pagination x_pull-left" no-error-return-url="true" style="margin:0">
 		<input type="hidden" name="module" value="{$module}" />
 		<input type="hidden" name="act" value="{$act}" />
 		<input cond="$order_target" type="hidden" name="order_target" value="{$order_target}" />
@@ -98,7 +98,7 @@ xe.lang.msg_select_push_notifications = "{$lang->msg_select_push_notifications}"
 	</div>
 </div>
 
-<form action="{Context::getUrl('')}" class="search center x_input-append" no-error-return-url="true">
+<form action="{Context::getRequestUri()}" class="search center x_input-append" no-error-return-url="true">
 	<input type="hidden" name="module" value="{$module}" />
 	<select name="selected_group_srl" style="margin-right:4px">
 		<option value="0">{$lang->all_group}</option>
@@ -115,11 +115,32 @@ xe.lang.msg_select_push_notifications = "{$lang->msg_select_push_notifications}"
 	<a class="x_btn" href="{getUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminSendPush', 'page', $page)}">{$lang->cmd_cancel}</a>
 </form>
 
+<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/ajaxboard/tpl/send_push/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<form class="x_form-horizontal" action="{Context::getRequestUri()}" method="post">
+	<input type="hidden" name="module" value="ajaxboard" />
+	<input type="hidden" name="act" value="procAjaxboardAdminDeleteNotifiedNotify" />
+	<input type="hidden" name="xe_validator_id" value="modules/ajaxboard/tpl/send_push/1" />
+	
+	<section class="section">
+		<h1>{$lang->etc}</h1>
+		
+		<div class="x_control-group">
+			{$lang->help_notified_notifications}
+		</div>
+		<div class="btnArea">
+			<button type="submit" class="x_btn x_btn-primary">{$lang->cmd_notified_notifications}</button>
+		</div>
+	</section>
+</form>
+
 <section class="x_modal" id="listManager">
-	<form ruleset="sendPush" action="{Context::getUrl('')}" class="x_form-horizontal" method="post">
+	<form ruleset="sendPush" action="{Context::getRequestUri()}" class="x_form-horizontal" method="post">
 		<input type="hidden" name="module" value="ajaxboard" />
 		<input type="hidden" name="act" value="procAjaxboardAdminSendPush" />
-		<input type="hidden" name="xe_validator_id" value="modules/ajaxboard/tpl/send_push/1" />
+		<input type="hidden" name="xe_validator_id" value="modules/ajaxboard/tpl/send_push/2" />
 		
 		<div class="x_modal-header">
 			<h1>{$lang->cmd_send_push_notifications}</h1>

@@ -3,9 +3,9 @@
 	<title xml:lang="ko">아약스보드 기본 스킨</title>
 	<title xml:lang="en">AJAXBoard default skin</title>
 	<title xml:lang="jp">アヤックスボードデフォルトスキン</title>
-	<description xml:lang="ko">기본 게시판 모바일 스킨에 대응합니다.</description>
-	<description xml:lang="en">Respond to the default board mobile skin.</description>
-	<description xml:lang="jp">基本掲示板のモバイルスキンに対応します。</description>
+	<description xml:lang="ko">기본 게시판 스킨에 대응합니다.</description>
+	<description xml:lang="en">Respond to the default board skin.</description>
+	<description xml:lang="jp">基本掲示板のスキンに対応します。</description>
 	<version>1.0</version>
 	<date>2014-07-19</date>
 	<license>GPL v3</license>
@@ -21,11 +21,11 @@
 		</var>
 		<var name="document_notify_text" type="textarea">
 			<title xml:lang="ko">게시글 알림</title>
-			<description xml:lang="ko">게시글 알림을 받는 회원에게 보여질 메시지를 입력합니다. %DOCUMENT_SRL%, %TITLE%, %CONTENT%, %NICKNAME 구분자를 사용할 수 있습니다.</description>
+			<description xml:lang="ko">게시글 알림을 받는 회원에게 보여질 메시지를 입력합니다. %DOCUMENT_SRL%, %TITLE%, %CONTENT%, %NICKNAME% 구분자를 사용할 수 있습니다.</description>
 		</var>
 		<var name="comment_notify_text" type="textarea">
 			<title xml:lang="ko">댓글 알림</title>
-			<description xml:lang="ko">댓글 알림을 받는 회원에게 보여질 메시지를 입력합니다. %DOCUMENT_SRL%, %COMMENT_SRL%, %CONTENT%, %NICKNAME 구분자를 사용할 수 있습니다.</description>
+			<description xml:lang="ko">댓글 알림을 받는 회원에게 보여질 메시지를 입력합니다. %DOCUMENT_SRL%, %COMMENT_SRL%, %CONTENT%, %NICKNAME% 구분자를 사용할 수 있습니다.</description>
 		</var>
 	</extra_vars>
 </skin>

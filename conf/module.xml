@@ -19,6 +19,7 @@
 		<permission action="dispAjaxboardAdminGrantInfo" target="manager" />
 		<permission action="dispAjaxboardAdminSkinInfo" target="manager" />
 		<permission action="dispAjaxboardAdminMobileSkinInfo" target="manager" />
+		<permission action="procAjaxboardAdminDeleteNotifiedNotify" target="manager" />
 		<permission action="procAjaxboardAdminInsertConfig" target="manager" />
 		<permission action="procAjaxboardAdminDeleteAjaxboard" target="manager" />
 		<permission action="procAjaxboardAdminInsertAjaxboard" target="manager" />
@@ -41,6 +42,7 @@
 		<action name="dispAjaxboardAdminSkinInfo" type="view" menu_name="ajaxboard" />
 		<action name="dispAjaxboardAdminMobileSkinInfo" type="view" menu_name="ajaxboard" />
 		<action name="dispAjaxboardServerInfo" type="view" index="true" />
+		<action name="procAjaxboardAdminDeleteNotifiedNotify" type="controller" />
 		<action name="procAjaxboardAdminInsertConfig" type="controller" ruleset="insertConfig" />
 		<action name="procAjaxboardAdminDeleteAjaxboard" type="controller" ruleset="deleteAjaxboard" />
 		<action name="procAjaxboardAdminInsertAjaxboard" type="controller" ruleset="insertAjaxboard" />

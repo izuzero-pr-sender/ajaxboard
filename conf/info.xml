@@ -6,8 +6,8 @@
 	<description xml:lang="ko">다른 회원들의 반응을 실시간으로 확인해보세요. 채팅형 실시간 갱신 및 알림을 지원합니다.</description>
 	<description xml:lang="en">Get reactions of the other members in real-time. Support real-time of chat type updates and notifications.</description>
 	<description xml:lang="jp">他のメンバーの反応をリアルタイムで確認してください。チャット型のリアルタイムアップデート、およびお知らせをサポートします。</description>
-	<version>1.7.0</version>
-	<date>2014-04-18</date>
+	<version>1.7.1</version>
+	<date>2014-07-19</date>
 	<category>utility</category>
 	<author email_address="contact@ajaxboard.co.kr" link="http://www.ajaxboard.co.kr/">
 		<name xml:lang="ko">이즈야</name>

@@ -58,6 +58,17 @@ class ajaxboardController extends ajaxboard
 		return $output;
 	}
 	
+	function deleteNotify($config)
+	{
+		if (!$config)
+		{
+			$config = new stdClass();
+		}
+		
+		$output = executeQuery('ajaxboard.deleteNotify', $config);
+		return $output;
+	}
+	
 	function updateNotifyNotified($config)
 	{
 		if (!$config)

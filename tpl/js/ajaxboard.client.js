@@ -45,116 +45,117 @@
 			
 			var that = this;
 			
-			this.socket.on("notice", function(message)
-			{
-				that.triggerCall("events.notice", "before", [message]);
-			});
-			this.socket.on("noticeOfServer", function(message)
-			{
-				that.triggerCall("events.noticeOfServer", "before", [message]);
-			});
-			this.socket.on("insertDocument", function(target_srl)
-			{
-				var oDocument = that.getDocumentHandler(target_srl);
-				
-				oDocument.done(function(response, status, xhr)
-				{
-					if (that.notify_list[response.module_srl] && !(that.member_srl && that.member_srl == response.member_srl))
-					{
-						that.triggerCall("events.notifyDocument", "before", [
-							response.document_srl,
-							response.title,
-							response.content,
-							response.nickname
-						]);
-					}
-					that.triggerCall("events.insertDocument", "before", [
-						response.document_srl
-					]);
-				});
-			});
-			this.socket.on("deleteDocument", function(target_srl)
-			{
-				that.triggerCall("events.deleteDocument", "before", [target_srl]);
-			});
-			this.socket.on("documentVoteUp", function(target_srl)
-			{
-				var oDocument = that.getDocumentHandler(target_srl);
-				
-				oDocument.done(function(response, status, xhr)
-				{
-					that.triggerCall("events.documentVoteUp", "before", [
-						response.document_srl,
-						response.voted_count
-					]);
-				});
-			});
-			this.socket.on("documentVoteDown", function(target_srl)
-			{
-				var oDocument = that.getDocumentHandler(target_srl);
-				
-				oDocument.done(function(response, status, xhr)
-				{
-					that.triggerCall("events.documentVoteDown", "before", [
-						response.document_srl,
-						response.blamed_count
-					]);
-				});
-			});
-			this.socket.on("insertComment", function(target_srl)
-			{
-				var oComment = that.getCommentHandler(target_srl);
-				
-				oComment.done(function(response, status, xhr)
-				{
-					if (!(that.member_srl && (that.member_srl == response.parent_srl || that.member_srl == response.member_srl)))
-					{
-						that.triggerCall("events.notifyComment", "before", [
-							response.document_srl,
-							response.comment_srl,
-							response.content,
-							response.nickname
-						]);
-					}
-					that.triggerCall("events.insertComment", "before", [
-						response.document_srl,
-						response.comment_srl
-					]);
-				});
-			});
-			this.socket.on("deleteComment", function(target_srl)
-			{
-				that.triggerCall("events.deleteComment", "before", [target_srl]);
-			});
-			this.socket.on("commentVoteUp", function(target_srl)
-			{
-				var oComment = that.getCommentHandler(target_srl);
-				
-				oComment.done(function(response, status, xhr)
-				{
-					that.triggerCall("events.commentVoteUp", "before", [
-						response.document_srl,
-						response.comment_srl,
-						response.voted_count
-					]);
-				});
-			});
-			this.socket.on("commentVoteDown", function(target_srl)
-			{
-				var oComment = that.getCommentHandler(target_srl);
-				
-				oComment.done(function(response, status, xhr)
-				{
-					that.triggerCall("events.commentVoteDown", "before", [
-						response.document_srl,
-						response.comment_srl,
-						response.blamed_count
-					]);
-				});
-			});
 			this.socket.on("connect", function()
 			{
 				that.triggerCall("events.connect", "after");
+				
+				that.socket.on("notice", function(message)
+				{
+					that.triggerCall("events.notice", "before", [message]);
+				});
+				that.socket.on("noticeOfServer", function(message)
+				{
+					that.triggerCall("events.noticeOfServer", "before", [message]);
+				});
+				that.socket.on("insertDocument", function(target_srl)
+				{
+					var oDocument = that.getDocumentHandler(target_srl);
+					
+					oDocument.done(function(response, status, xhr)
+					{
+						if (that.notify_list[response.module_srl] && !(that.member_srl && that.member_srl == response.member_srl))
+						{
+							that.triggerCall("events.notifyDocument", "before", [
+								response.document_srl,
+								response.title,
+								response.content,
+								response.nickname
+							]);
+						}
+						that.triggerCall("events.insertDocument", "before", [
+							response.document_srl
+						]);
+					});
+				});
+				that.socket.on("deleteDocument", function(target_srl)
+				{
+					that.triggerCall("events.deleteDocument", "before", [target_srl]);
+				});
+				that.socket.on("documentVoteUp", function(target_srl)
+				{
+					var oDocument = that.getDocumentHandler(target_srl);
+					
+					oDocument.done(function(response, status, xhr)
+					{
+						that.triggerCall("events.documentVoteUp", "before", [
+							response.document_srl,
+							response.voted_count
+						]);
+					});
+				});
+				that.socket.on("documentVoteDown", function(target_srl)
+				{
+					var oDocument = that.getDocumentHandler(target_srl);
+					
+					oDocument.done(function(response, status, xhr)
+					{
+						that.triggerCall("events.documentVoteDown", "before", [
+							response.document_srl,
+							response.blamed_count
+						]);
+					});
+				});
+				that.socket.on("insertComment", function(target_srl)
+				{
+					var oComment = that.getCommentHandler(target_srl);
+					
+					oComment.done(function(response, status, xhr)
+					{
+						if (that.member_srl && that.member_srl == response.parent_srl)
+						{
+							that.triggerCall("events.notifyComment", "before", [
+								response.document_srl,
+								response.comment_srl,
+								response.content,
+								response.nickname
+							]);
+						}
+						that.triggerCall("events.insertComment", "before", [
+							response.document_srl,
+							response.comment_srl
+						]);
+					});
+				});
+				that.socket.on("deleteComment", function(target_srl)
+				{
+					that.triggerCall("events.deleteComment", "before", [target_srl]);
+				});
+				that.socket.on("commentVoteUp", function(target_srl)
+				{
+					var oComment = that.getCommentHandler(target_srl);
+					
+					oComment.done(function(response, status, xhr)
+					{
+						that.triggerCall("events.commentVoteUp", "before", [
+							response.document_srl,
+							response.comment_srl,
+							response.voted_count
+						]);
+					});
+				});
+				that.socket.on("commentVoteDown", function(target_srl)
+				{
+					var oComment = that.getCommentHandler(target_srl);
+					
+					oComment.done(function(response, status, xhr)
+					{
+						that.triggerCall("events.commentVoteDown", "before", [
+							response.document_srl,
+							response.comment_srl,
+							response.blamed_count
+						]);
+					});
+				});
 			});
 			this.socket.on("error", function(reason)
 			{

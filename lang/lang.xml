@@ -50,6 +50,11 @@
 		<value xml:lang="en"><![CDATA[Push Notifications]]></value>
 		<value xml:lang="jp"><![CDATA[プッシュお知らせ]]></value>
 	</item>
+	<item name="cmd_notified_notifications">
+		<value xml:lang="ko"><![CDATA[보내진 알림 삭제]]></value>
+		<value xml:lang="en"><![CDATA[Delete Notified Notifications]]></value>
+		<value xml:lang="jp"><![CDATA[送信されたお知らせを削除]]></value>
+	</item>
 	<item name="cmd_send_push_notifications">
 		<value xml:lang="ko"><![CDATA[푸시 알림 보내기]]></value>
 		<value xml:lang="en"><![CDATA[Send push notifications]]></value>
@@ -114,6 +119,11 @@
 		<value xml:lang="ko"><![CDATA[다른 회원들의 반응을 실시간으로 확인해보세요. 채팅형 실시간 갱신 및 알림을 지원합니다.]]></value>
 		<value xml:lang="en"><![CDATA[Get reactions of the other members in real-time. Support real-time of chat type updates and notifications.]]></value>
 		<value xml:lang="jp"><![CDATA[他のメンバーの反応をリアルタイムで確認してください。チャット型のリアルタイムアップデート、およびお知らせをサポートします。]]></value>
+	</item>
+	<item name="help_notified_notifications">
+		<value xml:lang="ko"><![CDATA[이미 보내진 알림을 모두 삭제합니다. 앞으로 이미 보내진 알림을 다시 보낼 때 시리얼 번호가 다시 부여됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[Delete all notifications sent already. Give a new serial number when you send notifications sent already.]]></value>
+		<value xml:lang="jp"><![CDATA[既に送られたお知らせをすべて削除します。今後、既に送信されたお知らせを再送信するときにシリアルナンバーが再び付与されます。]]></value>
 	</item>
 	<item name="help_use_module_pc">
 		<value xml:lang="ko"><![CDATA[PC에서 모듈을 활성화합니다.]]></value>
