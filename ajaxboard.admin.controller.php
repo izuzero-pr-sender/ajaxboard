@@ -8,9 +8,6 @@
 
 class ajaxboardAdminController extends ajaxboard
 {
-	/**
-	 * @brief Initialization.
-	 **/
 	function init()
 	{
 	}
@@ -31,9 +28,6 @@ class ajaxboardAdminController extends ajaxboard
 		$this->setRedirectUrl(getNotEncodedUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminSendPush'));
 	}
 	
-	/**
-	 * @brief 
-	 **/
 	function procAjaxboardAdminInsertConfig()
 	{
 		$oModuleController = getController('module');
@@ -49,9 +43,6 @@ class ajaxboardAdminController extends ajaxboard
 		$this->setRedirectUrl(getNotEncodedUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminConfig'));
 	}
 	
-	/**
-	 * @brief 
-	 **/
 	function procAjaxboardAdminInsertAjaxboard()
 	{
 		$oModuleModel = getModel('module');
@@ -89,9 +80,6 @@ class ajaxboardAdminController extends ajaxboard
 		$this->setRedirectUrl(getNotEncodedUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminAjaxboardInfo', 'module_srl', $output->get('module_srl')));
 	}
 	
-	/**
-	 * @brief delete the ajaxboard module.
-	 **/
 	function procAjaxboardAdminDeleteAjaxboard()
 	{
 		$oModuleController = getController('module');

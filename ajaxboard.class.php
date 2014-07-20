@@ -23,9 +23,6 @@ class ajaxboard extends ModuleObject
 		array('comment.updateVotedCount', 'ajaxboard', 'controller', 'triggerAfterUpdateVotedComment', 'after')
 	);
 	
-	/**
-	 * @brief Install the module.
-	 **/
 	function moduleInstall()
 	{
 		if (!$this->isSupported())
@@ -43,9 +40,6 @@ class ajaxboard extends ModuleObject
 		return new Object();
 	}
 	
-	/**
-	 * @brief Check module method.
-	 **/
 	function checkUpdate()
 	{
 		$oModuleModel = getModel('module');
@@ -61,9 +55,6 @@ class ajaxboard extends ModuleObject
 		return false;
 	}
 	
-	/**
-	 * @brief Update module.
-	 **/
 	function moduleUpdate()
 	{
 		if (!$this->isSupported())
@@ -85,9 +76,6 @@ class ajaxboard extends ModuleObject
 		return new Object(0, 'success_updated');
 	}
 	
-	/**
-	 * @brief Uninstall the module.
-	 **/
 	function moduleUninstall()
 	{
 		$oModuleModel      = getModel('module');
@@ -113,16 +101,10 @@ class ajaxboard extends ModuleObject
 		return new Object();
 	}
 	
-	/**
-	 * @brief Recompile module cache.
-	 **/
 	function recompileCache()
 	{
 	}
 	
-	/**
-	 * @brief 
-	 **/
 	function isSupported()
 	{
 		if (function_exists('curl_init'))

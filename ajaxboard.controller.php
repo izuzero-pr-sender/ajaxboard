@@ -8,9 +8,6 @@
 
 class ajaxboardController extends ajaxboard
 {
-	/**
-	 * @brief Initialization.
-	 **/
 	function init()
 	{
 	}
@@ -208,9 +205,6 @@ class ajaxboardController extends ajaxboard
 		return new Object();
 	}
 	
-	/**
-	 * @brief the trigger for displaying 'View AJAXBoard API tokens' link when click the user ID.
-	 **/
 	function triggerAfterMemberMenu(&$obj)
 	{
 		$member_srl = Context::get('target_srl');

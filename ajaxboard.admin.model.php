@@ -8,9 +8,6 @@
 
 class ajaxboardAdminModel extends ajaxboard
 {
-	/**
-	 * @brief Initialization.
-	 **/
 	function init()
 	{
 	}

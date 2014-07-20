@@ -8,9 +8,6 @@
 
 class ajaxboardView extends ajaxboard
 {
-	/**
-	 * @brief Initialization.
-	 **/
 	function init()
 	{
 		$oAjaxboardModel = getModel('ajaxboard');
@@ -30,9 +27,6 @@ class ajaxboardView extends ajaxboard
 		$this->setTemplatePath($template_path);
 	}
 	
-	/**
-	 * @brief 
-	 **/
 	function dispAjaxboardServerInfo()
 	{
 		if (!$this->grant->access)

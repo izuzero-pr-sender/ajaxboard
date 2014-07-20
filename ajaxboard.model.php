@@ -8,9 +8,6 @@
 
 class ajaxboardModel extends ajaxboard
 {
-	/**
-	 * @brief Initialization.
-	 **/
 	function init()
 	{
 	}
@@ -212,9 +209,6 @@ class ajaxboardModel extends ajaxboard
 		return $output;
 	}
 	
-	/**
-	 * @brief Initialize AJAXBoard client.
-	 **/
 	function getAjaxboardWholeVariables()
 	{
 		$logged_info = Context::get('logged_info');
@@ -257,9 +251,6 @@ class ajaxboardModel extends ajaxboard
 		$this->adds($result);
 	}
 	
-	/**
-	 * @brief 
-	 **/
 	function getAjaxboardDocument()
 	{
 		$document_srl = Context::get('document_srl');
@@ -286,9 +277,6 @@ class ajaxboardModel extends ajaxboard
 		$this->adds($args);
 	}
 	
-	/**
-	 * @brief 
-	 **/
 	function getAjaxboardComment()
 	{
 		$comment_srl = Context::get('comment_srl');
@@ -323,9 +311,6 @@ class ajaxboardModel extends ajaxboard
 		$this->adds($args);
 	}
 	
-	/**
-	 * @brief Return module name in sitemap.
-	 **/
 	function triggerAfterModuleListInSitemap(&$obj)
 	{
 		array_push($obj, 'ajaxboard');

@@ -8,9 +8,6 @@
 
 class ajaxboardAdminView extends ajaxboard
 {
-	/**
-	 * @brief Initialization.
-	 **/
 	function init()
 	{
 		$oModuleModel = getModel('module');
@@ -66,9 +63,6 @@ class ajaxboardAdminView extends ajaxboard
 		$this->setTemplatePath(sprintf('%stpl/', $this->module_path));
 	}
 	
-	/**
-	 * @brief Display the ajaxboard module admin contents.
-	 **/
 	function dispAjaxboardAdminContent()
 	{
 		$args = new stdClass();
@@ -136,9 +130,6 @@ class ajaxboardAdminView extends ajaxboard
 		$this->dispAjaxboardAdminAjaxboardInfo();
 	}
 	
-	/**
-	 * @brief display the ajaxboard mdoule delete page.
-	 **/
 	function dispAjaxboardAdminDeleteAjaxboard()
 	{
 		$module_srl = Context::get('module_srl');
@@ -154,9 +145,6 @@ class ajaxboardAdminView extends ajaxboard
 		$this->setTemplateFile('delete_ajaxboard');
 	}
 	
-	/**
-	 * @brief 
-	 **/
 	function dispAjaxboardAdminServerInfo()
 	{
 		$oAjaxboardModel = getModel('ajaxboard');
@@ -164,9 +152,6 @@ class ajaxboardAdminView extends ajaxboard
 		$this->setTemplateFile('server_info');
 	}
 	
-	/**
-	 * @brief 
-	 **/
 	function dispAjaxboardAdminSendPush()
 	{
 		$oMemberAdminModel = getAdminModel('member');
@@ -229,9 +214,6 @@ class ajaxboardAdminView extends ajaxboard
 		$this->setTemplateFile('send_push');
 	}
 	
-	/**
-	 * @brief 
-	 **/
 	function dispAjaxboardAdminSendPushPopup()
 	{
 		if (!Context::get('is_logged'))
@@ -279,9 +261,6 @@ class ajaxboardAdminView extends ajaxboard
 		$this->setTemplateFile('send_push_popup');
 	}
 	
-	/**
-	 * @brief Display the module general configuration.
-	 **/
 	function dispAjaxboardAdminAjaxboardInfo()
 	{
 		$oAjaxboardModel = getModel('ajaxboard');
@@ -312,9 +291,6 @@ class ajaxboardAdminView extends ajaxboard
 		$this->setTemplateFile('insert_ajaxboard');
 	}
 	
-	/**
-	 * @brief Display the grant information.
-	 **/
 	function dispAjaxboardAdminGrantInfo()
 	{
 		$module_srl = Context::get('module_srl');
@@ -331,9 +307,6 @@ class ajaxboardAdminView extends ajaxboard
 		$this->setTemplateFile('grant_info');
 	}
 	
-	/**
-	 * @brief Display the module skin information.
-	 **/
 	function dispAjaxboardAdminSkinInfo()
 	{
 		$module_srl = Context::get('module_srl');
@@ -349,10 +322,7 @@ class ajaxboardAdminView extends ajaxboard
 		
 		$this->setTemplateFile('skin_info');
 	}
-
-	/**
-	 * @brief Display the module mobile skin information.
-	 **/
+	
 	function dispAjaxboardAdminMobileSkinInfo()
 	{
 		$module_srl = Context::get('module_srl');
