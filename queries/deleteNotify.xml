@@ -1,0 +1,12 @@
+<query id="deleteNotify" action="delete">
+	<tables>
+		<table name="ajaxboard_notify_list" />
+	</tables>
+	<columns>
+		<column name="notify_srl" var="notify_srl" filter="number" />
+		<column name="target_srl" var="target_srl" filter="number" />
+		<column name="type" var="type" />
+		<column name="notified" var="notified" />
+		<column name="regdate" var="regdate" filter="number" />
+	</columns>
+</query>

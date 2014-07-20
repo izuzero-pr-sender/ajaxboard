@@ -85,7 +85,10 @@ class ajaxboardModel extends ajaxboard
 	function getLinkedModuleInfoByModuleSrl($module_srl = 0)
 	{
 		$modules_info = $this->getModulesInfo();
-		
+		if (!$modules_info)
+		{
+			return NULL;
+		}
 		foreach ($modules_info as $module_info)
 		{
 			$module_srl_list = explode('|@|', $module_info->module_srl_list);
@@ -265,16 +268,20 @@ class ajaxboardModel extends ajaxboard
 		$oDocument = $oDocumentModel->getDocument($document_srl);
 		
 		$args = new stdClass();
-		$args->is_exists    = $oDocument->isExists();
-		$args->is_granted   = $oDocument->isGranted();
-		$args->module_srl   = $oDocument->get('module_srl');
-		$args->document_srl = $oDocument->get('document_srl');
-		$args->member_srl   = $oDocument->getMemberSrl();
-		$args->title        = $oDocument->getTitleText();
-		$args->content      = $oDocument->getContentText();
-		$args->nickname     = $oDocument->getNickName();
-		$args->voted_count  = $oDocument->get('voted_count');
-		$args->blamed_count = $oDocument->get('blamed_count');
+		$args->is_exists     = $oDocument->isExists();
+		$args->is_granted    = $oDocument->isGranted();
+		$args->is_accessible = $oDocument->isAccessible();
+		if ($args->is_granted || $args->is_accessible)
+		{
+			$args->module_srl   = $oDocument->get('module_srl');
+			$args->document_srl = $oDocument->get('document_srl');
+			$args->member_srl   = $oDocument->getMemberSrl();
+			$args->title        = $oDocument->getTitleText();
+			$args->content      = trim(strip_tags(nl2br($oDocument->getContent())));
+			$args->nickname     = $oDocument->getNickName();
+			$args->voted_count  = $oDocument->get('voted_count');
+			$args->blamed_count = $oDocument->get('blamed_count');
+		}
 		
 		$this->adds($args);
 	}
@@ -289,18 +296,29 @@ class ajaxboardModel extends ajaxboard
 		$oCommentModel = getModel('comment');
 		$oComment = $oCommentModel->getComment($comment_srl);
 		
+		if (!$oComment->get('parent_srl'))
+		{
+			$oDocumentModel = getModel('document');
+			$oDocument = $oDocumentModel->getDocument($oComment->get('document_srl'));
+			$oComment->add('parent_srl', $oDocument->get('member_srl'));
+		}
+		
 		$args = new stdClass();
-		$args->is_exists    = $oComment->isExists();
-		$args->is_granted   = $oComment->isGranted();
-		$args->module_srl   = $oComment->get('module_srl');
-		$args->parent_srl   = $oComment->get('parent_srl');
-		$args->document_srl = $oComment->get('document_srl');
-		$args->comment_srl  = $oComment->get('comment_srl');
-		$args->member_srl   = $oComment->getMemberSrl();
-		$args->content      = $oComment->getContentText();
-		$args->nickname     = $oComment->getNickName();
-		$args->voted_count  = $oComment->get('voted_count');
-		$args->blamed_count = $oComment->get('blamed_count');
+		$args->is_exists     = $oComment->isExists();
+		$args->is_granted    = $oComment->isGranted();
+		$args->is_accessible = $oComment->isAccessible();
+		if ($args->is_granted || $args->is_accessible)
+		{
+			$args->module_srl   = $oComment->get('module_srl');
+			$args->parent_srl   = $oComment->get('parent_srl');
+			$args->document_srl = $oComment->get('document_srl');
+			$args->comment_srl  = $oComment->get('comment_srl');
+			$args->member_srl   = $oComment->getMemberSrl();
+			$args->content      = trim(strip_tags(nl2br($oComment->getContent())));
+			$args->nickname     = $oComment->getNickName();
+			$args->voted_count  = $oComment->get('voted_count');
+			$args->blamed_count = $oComment->get('blamed_count');
+		}
 		
 		$this->adds($args);
 	}

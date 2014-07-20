@@ -15,6 +15,22 @@ class ajaxboardAdminController extends ajaxboard
 	{
 	}
 	
+	function procAjaxboardAdminDeleteNotifiedNotify()
+	{
+		$args = new stdClass();
+		$args->notified = 'Y';
+		
+		$oAjaxboardController = getController('ajaxboard');
+		$output = $oAjaxboardController->deleteNotify($args);
+		if (!$output->toBool())
+		{
+			return $output;
+		}
+		
+		$this->setMessage('success_deleted');
+		$this->setRedirectUrl(getNotEncodedUrl('', 'module', 'admin', 'act', 'dispAjaxboardAdminSendPush'));
+	}
+	
 	/**
 	 * @brief 
 	 **/
