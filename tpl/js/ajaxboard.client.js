@@ -63,7 +63,7 @@
 					
 					oDocument.done(function(response, status, xhr)
 					{
-						if (that.notify_list[response.module_srl] && !(that.member_srl && that.member_srl == response.member_srl))
+						if (that.notify_list[response.mid] && !(that.member_srl && that.member_srl == response.member_srl))
 						{
 							that.triggerCall("events.notifyDocument", "before", [
 								response.document_srl,

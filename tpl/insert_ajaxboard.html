@@ -133,15 +133,15 @@
 							<th scope="col">{$lang->module}</th>
 							<th scope="col">{$lang->mid}</th>
 							<th scope="col">{$lang->browser_title}</th>
-							<th scope="col"><input type="checkbox" data-name="module_srl_list[]" title="Check All" /></th>
+							<th scope="col"><input type="checkbox" data-name="mid_list[]" title="Check All" /></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr loop="$module_srl_list=>$key,$val">
+						<tr loop="$mid_list=>$key,$val">
 							<td>{$val->module}</td>
 							<td>{$val->mid}</td>
 							<td><a href="{getUrl('', 'mid', $val->mid)}" target="_blank">{$val->browser_title}</a></td>
-							<td><input type="checkbox" name="module_srl_list[]" value="{$key}" checked="checked"|cond="in_array($key, $module_info->module_srl_list)" /></td>
+							<td><input type="checkbox" name="mid_list[]" value="{$key}" checked="checked"|cond="in_array($key, $module_info->mid_list)" /></td>
 						</tr>
 					</tbody>
 				</table>

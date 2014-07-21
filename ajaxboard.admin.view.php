@@ -29,7 +29,7 @@ class ajaxboardAdminView extends ajaxboard
 			else
 			{
 				$oModuleModel->syncModuleToSite($module_info);
-				$module_info->module_srl_list = explode('|@|', $module_info->module_srl_list);
+				$module_info->mid_list = explode('|@|', $module_info->mid_list);
 				$module_info->notify_list = explode('|@|', $module_info->notify_list);
 				$this->module_info = $module_info;
 				Context::set('module_info', $module_info);
@@ -264,10 +264,10 @@ class ajaxboardAdminView extends ajaxboard
 	function dispAjaxboardAdminAjaxboardInfo()
 	{
 		$oAjaxboardModel = getModel('ajaxboard');
-		$module_srl_list = $oAjaxboardModel->getUsableModuleSrlList($this->module_info->module_srl, NULL, array('module', 'mid', 'browser_title'));
-		$notify_list = $oAjaxboardModel->getModuleSrlList(NULL, array('module', 'mid', 'browser_title'));
+		$mid_list = $oAjaxboardModel->getUsableMidList($this->module_info->module_srl, NULL, array('module', 'mid', 'browser_title'));
 		
 		$oModuleModel = getModel('module');
+		$notify_list = $oModuleModel->getMidList(NULL, array('module', 'mid', 'browser_title'));
 		$skin_list = $oModuleModel->getSkins($this->module_path);
 		$mskin_list = $oModuleModel->getSkins($this->module_path, 'm.skins');
 		
@@ -275,7 +275,7 @@ class ajaxboardAdminView extends ajaxboard
 		$layout_list = $oLayoutModel->getLayoutList();
 		$mlayout_list = $oLayoutModel->getLayoutList(0, 'M');
 		
-		Context::set('module_srl_list', $module_srl_list);
+		Context::set('mid_list', $mid_list);
 		Context::set('notify_list', $notify_list);
 		Context::set('skin_list', $skin_list);
 		Context::set('mskin_list', $mskin_list);

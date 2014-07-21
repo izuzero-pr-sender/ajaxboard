@@ -153,8 +153,10 @@ class ajaxboardController extends ajaxboard
 		$oModuleModel = getModel('module');
 		$oAjaxboardModel = getModel('ajaxboard');
 		
-		$module_info = $oAjaxboardModel->getLinkedModuleInfoByModuleSrl($oModule->module_srl);
-		
+		if ($oModule->mid)
+		{
+			$module_info = $oAjaxboardModel->getLinkedModuleInfoByMid($oModule->mid);
+		}
 		if (isset($module_info))
 		{
 			$grant = $oModuleModel->getGrant($module_info, Context::get('logged_info'));

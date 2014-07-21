@@ -53,6 +53,10 @@ class ajaxboardModel extends ajaxboard
 	function arrangeSkinVars($skin_vars)
 	{
 		$res = new stdClass();
+		if (!$skin_vars)
+		{
+			return NULL;
+		}
 		foreach ($skin_vars as $key=>$val)
 		{
 			$res->{$key} = $val->value;
@@ -68,6 +72,10 @@ class ajaxboardModel extends ajaxboard
 		{
 			return $output;
 		}
+		if (!$output->data)
+		{
+			return NULL;
+		}
 		foreach ($output->data as $val)
 		{
 			$module_srls[] = $val->module_srl;
@@ -81,6 +89,19 @@ class ajaxboardModel extends ajaxboard
 	
 	function getLinkedModuleInfoByModuleSrl($module_srl = 0)
 	{
+		if (!$module_srl)
+		{
+			return NULL;
+		}
+		
+		$oModuleModel = getModel('module');
+		$module_info = $oModuleModel->getModuleInfoByModuleSrl($module_srl);
+		
+		return $this->getLinkedModuleInfoByMid($module_info->mid);
+	}
+	
+	function getLinkedModuleInfoByMid($mid = NULL)
+	{
 		$modules_info = $this->getModulesInfo();
 		if (!$modules_info)
 		{
@@ -88,24 +109,14 @@ class ajaxboardModel extends ajaxboard
 		}
 		foreach ($modules_info as $module_info)
 		{
-			$module_srl_list = explode('|@|', $module_info->module_srl_list);
-			if (in_array($module_srl, $module_srl_list))
+			$mid_list = explode('|@|', $module_info->mid_list);
+			if (in_array($mid, $mid_list))
 			{
 				return $module_info;
 			}
 		}
 		
 		return NULL;
-	}
-	
-	function getLinkedModuleInfoByMid($mid = NULL)
-	{
-		if (is_null($mid)) return NULL;
-		
-		$oModuleModel = getModel('module');
-		$module_info = $oModuleModel->getModuleInfoByMid($mid);
-		
-		return $this->getLinkedModuleInfoByModuleSrl($module_info->module_srl);
 	}
 	
 	function getNotify($config)
@@ -138,42 +149,27 @@ class ajaxboardModel extends ajaxboard
 		return $output->data;
 	}
 	
-	function getModuleSrlList($args = NULL, $column_list = array())
+	function getUsableMidList($module_srl = 0, $args = NULL, $column_list = array())
 	{
-		$column_list = array_merge($column_list, array('module_srl'));
-		$output = executeQueryArray('ajaxboard.getModuleSrlList', $args, $column_list);
-		if (!$output->toBool())
-		{
-			return $output;
-		}
-		if (!$output->data)
-		{
-			return;
-		}
-		foreach ($output->data as $val)
-		{
-			$module_srl_list[$val->module_srl] = $val;
-		}
-		
-		return $module_srl_list;
-	}
-	
-	function getUsableModuleSrlList($module_srl = 0, $args = NULL, $column_list = array())
-	{
+		$oModuleModel = getModel('module');
+		$mid_list = $oModuleModel->getMidList($args, $column_list);
 		$modules_info = $this->getModulesInfo();
-		$module_srl_list = $this->getModuleSrlList($args, $column_list);
 		
+		if (!$modules_info)
+		{
+			return NULL;
+		}
 		foreach ($modules_info as $module_info)
 		{
 			if ($module_info->module_srl == $module_srl)
 			{
 				continue;
 			}
-			$module_info->module_srl_list = array_flip(explode('|@|', $module_info->module_srl_list));
-			$module_srl_list = array_diff_key($module_srl_list, $module_info->module_srl_list);
+			$module_info->mid_list = array_fill_keys(explode('|@|', $module_info->mid_list), true);
+			$mid_list = array_diff_key($mid_list, $module_info->mid_list);
 		}
 		
-		return $module_srl_list;
+		return $mid_list;
 	}
 	
 	function loadDefaultComponents($target = 'client')
@@ -230,7 +226,7 @@ class ajaxboardModel extends ajaxboard
 		$result->module_srl   = $module_info->module_srl;
 		$result->member_srl   = $logged_info->member_srl;
 		$result->document_srl = $document_srl;
-		$result->notify_list  = array_flip(explode('|@|', $module_info->notify_list));
+		$result->notify_list  = array_fill_keys(explode('|@|', $module_info->notify_list), true);
 		$result->use_wfsr     = $module_info->use_wfsr;
 		$result->timeout      = $module_config->timeout;
 		$result->token        = $module_config->token;
@@ -258,20 +254,27 @@ class ajaxboardModel extends ajaxboard
 		$oDocumentModel = getModel('document');
 		$oDocument = $oDocumentModel->getDocument($document_srl);
 		
+		$oModuleModel = getModel('module');
+		$module_info = $oModuleModel->getModuleInfoByModuleSrl($oDocument->get('module_srl'));
+		
 		$args = new stdClass();
 		$args->is_exists     = $oDocument->isExists();
 		$args->is_granted    = $oDocument->isGranted();
 		$args->is_accessible = $oDocument->isAccessible();
+		$args->module_srl    = $oDocument->get('module_srl');
+		$args->document_srl  = $oDocument->get('document_srl');
+		$args->member_srl    = $oDocument->getMemberSrl();
+		$args->title         = '';
+		$args->content       = '';
+		$args->nickname      = $oDocument->getNickName();
+		$args->voted_count   = $oDocument->get('voted_count');
+		$args->blamed_count  = $oDocument->get('blamed_count');
+		$args->mid           = $module_info->mid;
+		
 		if ($args->is_granted || $args->is_accessible)
 		{
-			$args->module_srl   = $oDocument->get('module_srl');
-			$args->document_srl = $oDocument->get('document_srl');
-			$args->member_srl   = $oDocument->getMemberSrl();
-			$args->title        = $oDocument->getTitleText();
-			$args->content      = trim(strip_tags(nl2br($oDocument->getContent(false, false, false, false, false))));
-			$args->nickname     = $oDocument->getNickName();
-			$args->voted_count  = $oDocument->get('voted_count');
-			$args->blamed_count = $oDocument->get('blamed_count');
+			$args->title   = $oDocument->getTitleText();
+			$args->content = trim(strip_tags(nl2br($oDocument->getContent(false, false, false, false, false))));
 		}
 		
 		$this->adds($args);
@@ -291,21 +294,27 @@ class ajaxboardModel extends ajaxboard
 			$oComment->add('parent_srl', $oDocument->get('member_srl'));
 		}
 		
+		$oModuleModel = getModel('module');
+		$module_info = $oModuleModel->getModuleInfoByModuleSrl($oComment->get('module_srl'));
+		
 		$args = new stdClass();
 		$args->is_exists     = $oComment->isExists();
 		$args->is_granted    = $oComment->isGranted();
 		$args->is_accessible = $oComment->isAccessible();
+		$args->module_srl    = $oComment->get('module_srl');
+		$args->parent_srl    = $oComment->get('parent_srl');
+		$args->document_srl  = $oComment->get('document_srl');
+		$args->comment_srl   = $oComment->get('comment_srl');
+		$args->member_srl    = $oComment->getMemberSrl();
+		$args->content       = '';
+		$args->nickname      = $oComment->getNickName();
+		$args->voted_count   = $oComment->get('voted_count');
+		$args->blamed_count  = $oComment->get('blamed_count');
+		$args->mid           = $module_info->mid;
+		
 		if ($args->is_granted || $args->is_accessible)
 		{
-			$args->module_srl   = $oComment->get('module_srl');
-			$args->parent_srl   = $oComment->get('parent_srl');
-			$args->document_srl = $oComment->get('document_srl');
-			$args->comment_srl  = $oComment->get('comment_srl');
-			$args->member_srl   = $oComment->getMemberSrl();
-			$args->content      = trim(strip_tags(nl2br($oComment->getContent(false, false, false))));
-			$args->nickname     = $oComment->getNickName();
-			$args->voted_count  = $oComment->get('voted_count');
-			$args->blamed_count = $oComment->get('blamed_count');
+			$args->content = trim(strip_tags(nl2br($oComment->getContent(false, false, false))));
 		}
 		
 		$this->adds($args);

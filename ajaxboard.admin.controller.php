@@ -50,7 +50,7 @@ class ajaxboardAdminController extends ajaxboard
 		
 		$args = Context::getRequestVars();
 		$args->module = 'ajaxboard';
-		$args->module_srl_list = implode('|@|', $args->module_srl_list);
+		$args->mid_list = implode('|@|', $args->mid_list);
 		$args->notify_list = implode('|@|', $args->notify_list);
 		
 		if ($args->module_srl)
